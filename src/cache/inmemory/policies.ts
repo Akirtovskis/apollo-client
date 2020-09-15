@@ -463,6 +463,15 @@ export class Policies {
       const policy: Policies["typePolicies"][string] =
         this.typePolicies[typename] = Object.create(null);
       policy.fields = Object.create(null);
+
+      const supertypes = this.supertypeMap.get(typename);
+      if (supertypes && supertypes.size) {
+        supertypes.forEach(supertype => {
+          const { fields, ...rest } = this.getTypePolicy(supertype);
+          Object.assign(policy, rest);
+          Object.assign(policy.fields, fields);
+        });
+      }
     }
 
     const inbox = this.toBeAdded[typename];

@@ -90,7 +90,7 @@ Import and initialize a `WebSocketLink` object in the same project file where yo
 import { WebSocketLink } from '@apollo/client/link/ws';
 
 const wsLink = new WebSocketLink({
-  uri: `ws://localhost:5000/`,
+  uri: `ws://localhost:5000/graphql`,
   options: {
     reconnect: true
   }
